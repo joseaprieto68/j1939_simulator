@@ -4,11 +4,11 @@ from simulator.signal import Signal
 from simulator.database import J1939Database
 
 class SignalPanel(wx.Panel):
-    def __init__(self, parent, simulator, database: J1939Database):
+    def __init__(self, parent, simulator, database):
         super().__init__(parent)
         self.simulator = simulator
-        self.database = database
-        self.controls_map = {}  # Maps signal labels to UI elements
+        self.database = database  # Proper initialization
+        self.controls_map = {}
         self._create_controls()
         
     def _create_controls(self):

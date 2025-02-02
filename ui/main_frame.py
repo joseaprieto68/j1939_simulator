@@ -1,12 +1,15 @@
 import wx
 from ui.signal_panel import SignalPanel
 from ui.lamp_widget import LampWidget
+from simulator.dtc_handler import DTCHandler
+
 
 class MainFrame(wx.Frame):
-    def __init__(self, parent, simulator, dtc_handler):
+    def __init__(self, parent, simulator, database):
         super().__init__(parent, title="J1939 Simulator")
         self.simulator = simulator
-        self.dtc_handler = dtc_handler
+        self.database = database  # Store database reference
+        self.dtc_handler = DTCHandler()
         
         self._create_ui()
         self.Layout()
@@ -25,7 +28,7 @@ class MainFrame(wx.Frame):
         splitter = wx.SplitterWindow(panel)
         
         # Signal controls
-        self.signal_panel = SignalPanel(splitter, self.simulator)
+        self.signal_panel = SignalPanel(splitter, self.simulator, self.database)
         
         # DTC controls
         dtc_panel = wx.Panel(splitter)
