@@ -19,7 +19,7 @@ class J1939Manager:
     async def connect(self):
         """Initialize CAN connection and claim address"""
         self.ecu.connect(bustype='pcan', channel='PCAN_USBBUS1')
-        await self.ecu.claim_address(self.source_address)
+        # await self.ecu.claim_address(self.source_address)
         
     async def periodic_broadcast(self, simulator, interval=0.1):
         """Send periodic broadcasts for enabled signals"""
@@ -49,10 +49,10 @@ async def main():
     simulator = Simulator(database)
     dtc_handler = DTCHandler()
     j1939 = J1939Manager()
-    
+
     # Setup UI
     app = WxAsyncApp()
-    frame = MainFrame(None, simulator, dtc_handler)
+    frame = MainFrame(None, simulator, database, dtc_handler)
     frame.Show()
     
     try:

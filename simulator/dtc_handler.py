@@ -2,6 +2,7 @@ from config.dtc_definitions import DTC_EVENTS
 
 class DTCHandler:
     def __init__(self):
+        self.events = DTC_EVENTS
         self.active_dtcs = []
         self.occurrence_counters = {e["name"]: 0 for e in DTC_EVENTS}
     

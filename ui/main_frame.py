@@ -5,11 +5,11 @@ from simulator.dtc_handler import DTCHandler
 
 
 class MainFrame(wx.Frame):
-    def __init__(self, parent, simulator, database):
+    def __init__(self, parent, simulator, database, dtc_handler):
         super().__init__(parent, title="J1939 Simulator")
         self.simulator = simulator
         self.database = database  # Store database reference
-        self.dtc_handler = DTCHandler()
+        self.dtc_handler = dtc_handler
         
         self._create_ui()
         self.Layout()
